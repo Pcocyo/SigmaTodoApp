@@ -15,5 +15,5 @@ library
 	bootstrap
 	react-bootstrap
 
-
-
+commits standard
+https://www.conventionalcommits.org/en/v1.0.0/
