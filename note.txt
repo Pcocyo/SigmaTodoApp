@@ -1,0 +1,19 @@
+A Full CRUD reading todo app
+
+using open Library API
+
+
+features
+	login/logout
+	CRUD a todo app
+	have timer to schedule when you will start to read using useEffect
+	use localstorage to store current data then use Redux to store the data
+	
+library
+	react
+	redux 
+	bootstrap
+	react-bootstrap
+
+
+
