@@ -2,11 +2,23 @@ import React, { useState, useRef } from 'react'
 import { Col, Button, Overlay } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import HoverButton from './HoverButton'
+
+// redux imports
+import { useDispatch } from 'react-redux'
+import { clearData } from '../reducer/userReducer'
 const Navigation = ({setUserLogin}) => {
   const [wide, setWide] = useState(false)
   const navigate = useNavigate()
   const [show, setShow] = useState(false);
   const buttonRef = useRef(null);
+
+  //redux logic
+  const dispatch = useDispatch()
+  function handleLogout(){
+    dispatch(clearData())
+    setUserLogin(false)
+    navigate('/')
+  }
   return (
     <>
       <Col
@@ -81,18 +93,13 @@ const Navigation = ({setUserLogin}) => {
                     hoverStyles='#c39edb'
                     defaultStyles='#222222'
                     textHoverStyle='#222222'
-                    onClick={() =>{
-                        setUserLogin(false)
-                        navigate('/')
-                      }
-                    }
+                    onClick={handleLogout}
                     additionalStyles={{border:'1px solid #c39edb'}}
                   >
                     <i className="bi bi-person-x-fill" style={{ fontSize: '20px'}}></i>
                   </HoverButton>
                 </div>
               )}
-
             </div>
           </div>
           <div className="">

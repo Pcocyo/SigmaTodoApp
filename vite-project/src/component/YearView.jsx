@@ -2,9 +2,15 @@ import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Container,Row,Col } from 'react-bootstrap';
 import { predefinedCalendar } from '../calender';
+
+//redux imports
+import { useSelector } from 'react-redux';
 const YearView = () => {
-    const [selectedMonth, setSelectedMonth] = useState({ month: '', index: 0 });
     const [calenderHover,setCalenderHover] = useState({})
+
+    //redux logic
+    const userState = useSelector(state=>state.user)
+
     function handleMouseEnterCalender(id){ 
         setCalenderHover((prevState)=>({...prevState,[id]:true}))
     }
@@ -22,7 +28,6 @@ const YearView = () => {
     const navigate = useNavigate()
     function handleSelectedMonth(month, monthInObjIndex) {
         const newSelection = { month, index: monthInObjIndex };
-        setSelectedMonth(newSelection);
         navigate('/week', { state: { ...newSelection } })
     }
     // border:`3px  solid  ${monthBackgroundColor(index)}`,
@@ -31,7 +36,7 @@ const YearView = () => {
         <Container fluid className=' h-100 d-flex align-items-center justify-content-center' style={{borderWidth:'2px'}}>
             <Row className=' p-0 m-0 gap-2' style={{ height: '800px', width:'800px' }}>
                 {
-                    Object.keys(predefinedCalendar).map((keys, index) => {  
+                    Object.keys(userState.data).map((keys, index) => {  
                         return (
                             <Col xs='12' sm='3' className='p-0 m-0 d-flex justify-content-center' 
                             style={{ 

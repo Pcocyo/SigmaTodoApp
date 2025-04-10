@@ -1,10 +1,14 @@
 import React,{useState,useRef,usseEffect, useEffect} from 'react'
+// stylng and component imports
 import { Form,Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import HoverButton from './HoverButton'
 import { predefinedCalendar } from '../calender'
 
+// redux imports
 import { useSelector,useDispatch } from 'react-redux'
+import { initializeData } from '../reducer/userReducer'
+
 const LoginPage = ({setUser,setUserLogin}) => {
     const [login,setLogin] = useState(true)
     const [alert,setAlert] = useState('')
@@ -12,7 +16,9 @@ const LoginPage = ({setUser,setUserLogin}) => {
     const [password,setpassword] = useState('')
     const navigate = useNavigate()
 
-
+    //store initialization
+    const userStore = useSelector((state)=>state.user)
+    const dispatch = useDispatch()
     //handling login and logout logic
     useEffect(()=>{
         if(!localStorage.getItem('registeredUser')){
@@ -33,6 +39,7 @@ const LoginPage = ({setUser,setUserLogin}) => {
                 if(ele.password === password){
                     haveUser.password = password
                     haveUser.data = registeredUser[index].data
+                    haveUser.localStorageIndex = index
                 }
             })
             if(!haveUser.username){
@@ -46,20 +53,21 @@ const LoginPage = ({setUser,setUserLogin}) => {
                 setpassword('')
             } 
             else{
-
-                //setUserLogin(true)
-
-                // navigate('/year')
+                dispatch(initializeData(haveUser))
+                setUserLogin(true)
+                navigate('/year')
             }
         }else{
-            registeredUser.push(
-                {
-                    username:username,
-                    password:password,
-                    data:predefinedCalendar
-                }
-            )
+            const newUser = {
+                username:username,
+                password:password,
+                data:predefinedCalendar
+            }
+            registeredUser.push(newUser)
             localStorage.setItem('registeredUser',JSON.stringify(registeredUser))
+            dispatch(initializeData({...newUser,localStorageIndex:registeredUser.length-1}))
+            setUserLogin(true)
+            navigate('/year')
         }
         
     }
