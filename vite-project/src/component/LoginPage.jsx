@@ -3,12 +3,17 @@ import { Form,Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import HoverButton from './HoverButton'
 import { predefinedCalendar } from '../calender'
+
+import { useSelector,useDispatch } from 'react-redux'
 const LoginPage = ({setUser,setUserLogin}) => {
     const [login,setLogin] = useState(true)
     const [alert,setAlert] = useState('')
     const [username,setUsername] = useState('')
     const [password,setpassword] = useState('')
     const navigate = useNavigate()
+
+
+    //handling login and logout logic
     useEffect(()=>{
         if(!localStorage.getItem('registeredUser')){
             localStorage.setItem('registeredUser',`[]`)
@@ -41,8 +46,10 @@ const LoginPage = ({setUser,setUserLogin}) => {
                 setpassword('')
             } 
             else{
-                setUserLogin(true)
-                navigate('/year')
+
+                //setUserLogin(true)
+
+                // navigate('/year')
             }
         }else{
             registeredUser.push(
