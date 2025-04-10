@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
 import { Button } from 'react-bootstrap';
 
-
-const HoverButton = ({ hoverStyles, defaultStyles, additionalStyles, children, onClick, textHoverStyle, defaulTextStyles,ref}) => {
+const HoverButton = ({ hoverStyles, defaultStyles, additionalStyles, children, onClick, textHoverStyle, defaulTextStyles,ref,type}) => {
     const [hovered, setHovered] = useState(false); // Internal hover state for the button
   
     const handleMouseEnter = () => {
@@ -25,6 +24,7 @@ const HoverButton = ({ hoverStyles, defaultStyles, additionalStyles, children, o
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
         ref={ref?ref:null}
+        type={type?type:'button'}
       >
         {children} {/* Button content */}
       </Button>

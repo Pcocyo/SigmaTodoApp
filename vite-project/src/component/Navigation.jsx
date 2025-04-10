@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { Col, Button, Overlay } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import HoverButton from './HoverButton'
-const Navigation = () => {
+const Navigation = ({setUserLogin}) => {
   const [wide, setWide] = useState(false)
-
+  const navigate = useNavigate()
   const [show, setShow] = useState(false);
   const buttonRef = useRef(null);
   return (
@@ -80,7 +81,11 @@ const Navigation = () => {
                     hoverStyles='#c39edb'
                     defaultStyles='#222222'
                     textHoverStyle='#222222'
-                    onClick={() => setShow(!show)}
+                    onClick={() =>{
+                        setUserLogin(false)
+                        navigate('/')
+                      }
+                    }
                     additionalStyles={{border:'1px solid #c39edb'}}
                   >
                     <i className="bi bi-person-x-fill" style={{ fontSize: '20px'}}></i>
