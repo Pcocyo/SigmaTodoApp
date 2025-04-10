@@ -1,13 +1,13 @@
 import React, { useRef,useState,useEffect } from 'react'
 import { Row, Container, Col, Carousel, Button } from 'react-bootstrap'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import { predefinedCalendar } from '../calender';
 import HoverButton from './HoverButton';
 const WeekView = () => {
 
     const location = useLocation()
     const [currentMonth,setCurrentMonth] = useState({...location.state})
-
+    const navigate = useNavigate()
     // weekGenerate
     const monthDuplicated = [...predefinedCalendar[currentMonth.month]]
     
@@ -58,7 +58,7 @@ const WeekView = () => {
     };
     return (
         <>
-            <div className="d-flex justify-content-center gap-3 align-items-center">
+            <div className="d-flex justify-content-center gap-3 align-items-center mt-2">
                 <HoverButton 
                 hoverStyles='#000000' 
                 defaultStyles='transparent' 
@@ -92,6 +92,14 @@ const WeekView = () => {
                 additionalStyles={{borderRadius:'100px'}}
                 onClick={handleNextMonth}>
                         <i className="bi bi-caret-right-square fs-3"></i>
+                </HoverButton>
+                <HoverButton 
+                hoverStyles='#000000' 
+                defaultStyles='transparent' 
+                defaulTextStyles='#000000'
+                additionalStyles={{borderRadius:'100px',border:'1px solid #c39edb'}}
+                onClick={()=>{navigate('/year')}}>
+                        <i className="bi bi-calendar-date fs-3"></i>
                 </HoverButton>
                 
             </div>

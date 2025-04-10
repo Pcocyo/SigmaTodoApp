@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React,{useState}from 'react'
 import { predefinedCalendar } from './calender'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Row, Col, Container, Button } from 'react-bootstrap'
@@ -7,7 +6,8 @@ import Navigation from './component/Navigation'
 import YearView from './component/YearView'
 import WeekView from './component/WeekView'
 const App = () => {
-  return (
+
+  return ( 
     <BrowserRouter>
       <Container
         fluid
@@ -21,7 +21,7 @@ const App = () => {
             style={{ backgroundColor: '#f9f9f9' }}
           >
             <Routes>
-              <Route path="/" element={<YearView />} />
+              <Route path="/year" element={<YearView />} />
               <Route path="/week" element={<WeekView />} />
             </Routes>
           </Col>
