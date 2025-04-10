@@ -10,28 +10,22 @@ const YearView = () => {
 
     //redux logic
     const userState = useSelector(state=>state.user)
-
+    
+    //component logic
     function handleMouseEnterCalender(id){ 
         setCalenderHover((prevState)=>({...prevState,[id]:true}))
     }
     function handleMouseLeaveCalender(id){
         setCalenderHover((prevState)=>({...prevState,[id]:false}))
     }
-    function monthBackgroundColor(id){
-        if (calenderHover[id] && id % 2 == 0){
-            return '#c8a1d6'
-        }
-        else if(calenderHover[id]){
-            return '#cfdedb'
-        } 
-    }
+
+    //navigation logic
     const navigate = useNavigate()
     function handleSelectedMonth(month, monthInObjIndex) {
         const newSelection = { month, index: monthInObjIndex };
         navigate('/week', { state: { ...newSelection } })
     }
-    // border:`3px  solid  ${monthBackgroundColor(index)}`,
-    // backgroundColor:`${index%2==0? '#c8a1d6':'#cfdedb'}`,
+
     return (
         <Container fluid className=' h-100 d-flex align-items-center justify-content-center' style={{borderWidth:'2px'}}>
             <Row className=' p-0 m-0 gap-2' style={{ height: '800px', width:'800px' }}>

@@ -21,8 +21,11 @@ const userSlice = createSlice({
             state.password=''
             state.data={}
             state.localStorageIndex = null
+        },
+        addTask:(state,action)=>{
+            state.data[action.payload.month][action.payload.index].push({...action.payload.data})
         }
     }
 })
-export const {initializeData,clearData} = userSlice.actions
+export const {initializeData,clearData,addTask} = userSlice.actions
 export default userSlice.reducer 

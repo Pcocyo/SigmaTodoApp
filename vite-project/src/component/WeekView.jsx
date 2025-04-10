@@ -1,15 +1,21 @@
-import React, { useRef,useState,useEffect } from 'react'
-import { Row, Container, Col, Carousel, Button } from 'react-bootstrap'
+import React, { useRef,useState } from 'react'
+import {Carousel } from 'react-bootstrap'
 import { useLocation,useNavigate } from 'react-router-dom';
 import { predefinedCalendar } from '../calender';
 import HoverButton from './HoverButton';
+import Week from './Week';
+//redux imports
+import { useDispatch, useSelector } from 'react-redux';
 const WeekView = () => {
 
     const location = useLocation()
     const [currentMonth,setCurrentMonth] = useState({...location.state})
     const navigate = useNavigate()
+
+    // redux logic
+    const user = useSelector((state)=> state.user)
     // weekGenerate
-    const monthDuplicated = [...predefinedCalendar[currentMonth.month]]
+    const monthDuplicated = [...user.data[currentMonth.month]]
     
     function changeToWeeks(monthArray) {
         const weeks = []
@@ -21,11 +27,11 @@ const WeekView = () => {
     const week = changeToWeeks(monthDuplicated)
 
     function handleNextMonth(){
-        let month = Object.keys(predefinedCalendar)[currentMonth.index + 1]
+        let month = Object.keys(user.data)[currentMonth.index + 1]
         if(!month){
             month = 'January'
         }
-        let index = Object.keys(predefinedCalendar).indexOf(month) 
+        let index = Object.keys(user.data).indexOf(month) 
         const nextMonth = {
             month: month,
             index: index
@@ -34,7 +40,7 @@ const WeekView = () => {
         setCurrentMonth({...nextMonth})
     }
     function handlePrevMonth(){
-        let month = Object.keys(predefinedCalendar)[currentMonth.index - 1]
+        let month = Object.keys(user.data)[currentMonth.index - 1]
         if(!month){
             month = 'December'
         }
@@ -60,7 +66,7 @@ const WeekView = () => {
         <>
             <div className="d-flex justify-content-center gap-3 align-items-center mt-2">
                 <HoverButton 
-                hoverStyles='#000000' 
+                hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
                 defaulTextStyles='#000000'
                 additionalStyles={{borderRadius:'100px'}}
@@ -68,7 +74,7 @@ const WeekView = () => {
                         <i className="bi bi-caret-left-square fs-3"></i>
                 </HoverButton>
                 <HoverButton 
-                hoverStyles='#000000' 
+                hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
                 defaulTextStyles='#000000'
                 additionalStyles={{borderRadius:'100px'}}
@@ -77,7 +83,7 @@ const WeekView = () => {
                 </HoverButton>
                 <div className='fs-4'>{currentMonth.month}</div>
                 <HoverButton 
-                hoverStyles='#000000' 
+                hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
                 defaulTextStyles='#000000'
                 additionalStyles={{borderRadius:'100px'}}
@@ -86,7 +92,7 @@ const WeekView = () => {
                 </HoverButton>
 
                 <HoverButton 
-                hoverStyles='#000000' 
+                hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
                 defaulTextStyles='#000000'
                 additionalStyles={{borderRadius:'100px'}}
@@ -110,7 +116,7 @@ const WeekView = () => {
                     const currentWeek = index;
                     return (
                         <Carousel.Item key={index}>
-                            <Week weekToDisplay={ele} weekInMonth={currentWeek} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth}/>
+                            <Week weekToDisplay={ele} weekInMonth={currentWeek}currentMonth={currentMonth}/>
                         </Carousel.Item>
                     )
                 })}
@@ -118,39 +124,7 @@ const WeekView = () => {
         </>
     )
 }
-const Week = ({ weekToDisplay, weekInMonth, setCurrentMonth,currentMonth}) => {
-    return (
-        <Container fluid className='' style={{ maxHeight: '100vh', height: '100vh' }} xs={1}>
-            <Row className=''>
-                {weekToDisplay.map((days, index) => {
-                    return (
-                        <Col key={index} className='flex-grow p-1 m-0'
-                        style={
-                            {
-                                borderColor:'#222222',
-                                borderRight:'2px solid',
-                                borderBottom:'2px solid',
-                                borderRadius:'25px'
-                            }
-                        }>
-                            <div className='fs-1' style={{color:'#9a9a9a'}}>{(weekInMonth * 7) + index + 1}</div>
-                            <div className="d-flex justify-content-center align-items-center">
-                                <HoverButton
-                                additionalStyles={{width:'90%',height:'100px'}}
-                                hoverStyles='#c39edb'
-                                defaultStyles='#222222'
-                                textHoverStyle='#222222'>
-                                    <i className="bi bi-plus-circle fs-1"></i>
-                                </HoverButton>
-                            </div> 
-                            
-                        </Col>
-                    )
-                })}
-            </Row>
-        </Container>
-    )
-}
+
 
 
 
