@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Button } from 'react-bootstrap'
+import HoverButton from './HoverButton'
 const Navigation = () => {
   const [wide, setWide] = useState(false)
   return (
@@ -48,33 +49,7 @@ const Navigation = () => {
   )
 }
 
-const HoverButton = ({ hoverStyles, defaultStyles, additionalStyles, children, onClick, textHoverStyle, defaulTextStyles }) => {
-  const [hovered, setHovered] = useState(false); // Internal hover state for the button
 
-  const handleMouseEnter = () => {
-    setHovered(true); // Activate hover state
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false); // Deactivate hover state
-  };
-  const styles = {
-    backgroundColor: hovered ? hoverStyles : defaultStyles,
-    color: hovered ? textHoverStyle : defaulTextStyles,
-    border: '0px',
-    ...additionalStyles
-  }
-  return (
-    <Button
-      style={{ ...styles }} // Apply styles dynamically
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-    >
-      {children} {/* Button content */}
-    </Button>
-  );
-};
 
 
 // const ButtonComponent = ({style,onClick,handleMouseEnterbutton,handleMouseExitbutton,hover,btnId})=>{
