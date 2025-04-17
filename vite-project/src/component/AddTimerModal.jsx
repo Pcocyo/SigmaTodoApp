@@ -33,7 +33,7 @@ const AddTimerModal = ({ show, handleClose,setTimer }) => {
                 >
                     <Form onSubmit={(e) => handleSubmit(e)}>
                         <Form.Group className="mb-3">
-                            <Form.Label>Set Timer (minutes)</Form.Label>
+                            <Form.Label>Set Timer (seconds)</Form.Label>
                             <Form.Control
                                 type='numbers'
                                 style={{

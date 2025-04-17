@@ -15,11 +15,9 @@ const AddTaskModal = ({ show, handleClose,daysInMonth,currentMonth }) => {
         e.preventDefault()
         console.log('button submit')
         const dataToInsert = {taskName:taskName,taskDescription:taskDescription}
-        console.log(dataToInsert)
-        console.log(daysInMonth)
-        console.log(currentMonth)
         dispatch(addTask({data:dataToInsert,month:currentMonth,index:daysInMonth}))
-        console.log(user)
+        setTaskName('')
+        setTaskDescription('')
         handleClose()
     }
     return (

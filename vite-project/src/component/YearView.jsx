@@ -28,7 +28,7 @@ const YearView = () => {
 
     return (
         <Container fluid className='h-100 d-flex align-items-center justify-content-center' style={{borderWidth:'2px'}}>
-            <Row className=' p-0 m-0 gap-2' style={{ height: '800px', width:'800px' }}>
+            <Row className=' p-0 m-0 gap-2' style={{ height: '800px', width:'800px'}}>
                 {
                     Object.keys(userState.data).map((keys, index) => {  
                         return (
