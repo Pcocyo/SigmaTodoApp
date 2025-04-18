@@ -8,7 +8,7 @@ const EditTaskModal = ({ handleClose, show, dataAttr }) => {
     const userData = useSelector(state => state.user)
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
-
+    console.log(dataAttr)
     const dispatch = useDispatch()
     //delete and edit button 
     const handleSubmit = (e) => {
@@ -43,7 +43,7 @@ const EditTaskModal = ({ handleClose, show, dataAttr }) => {
                     <ModalHeader style={{
                         borderBottom: '0px'
                     }}>
-                        <Modal.Title>Add Task</Modal.Title>
+                        <Modal.Title>Edit Task</Modal.Title>
                     </ModalHeader>
                     <Form>
                         <Form.Group className='m-2'>

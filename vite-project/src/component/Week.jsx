@@ -43,7 +43,7 @@ const Week = ({ weekToDisplay, weekInMonth, currentMonth }) => {
                                     {days &&
                                         days.map((ele, index) => {
                                             return (
-                                                <div className="d-flex flex-column align-items-center"
+                                                <div className="d-flex flex-column align-items-center "
                                                     style={{
                                                         width: '90%',
                                                         minHeight: '100px',

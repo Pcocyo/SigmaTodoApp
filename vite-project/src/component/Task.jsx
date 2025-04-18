@@ -31,7 +31,7 @@ const Task = ({ taskName, taskDescription, dataAttr }) => {
       const handleCloseEditModal = ()=> setShowEditModal(false)
   
     return (
-        <>  
+        <div className='text-break text-wrap'>  
             <div className="text-center fs-4 m-2">
                 {taskName}
             </div>
@@ -69,7 +69,7 @@ const Task = ({ taskName, taskDescription, dataAttr }) => {
             </div>
             <AddTimerModal show={showAddTimer} handleClose={handleCloseTimer} setTimer={setTimer} />
             <EditTaskModal show={showEditModal} handleClose={handleCloseEditModal} dataAttr={dataAttr}/>
-        </>
+        </div>
     )
 }
 
