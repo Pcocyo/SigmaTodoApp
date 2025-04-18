@@ -3,7 +3,7 @@ import HoverButton from './HoverButton'
 import AddTimerModal from './AddTimerModal';
 import EditTaskModal from './EditTaskModal';
 
-const Task = ({ taskName, taskDescription, dataAttr }) => {
+const Task = ({ taskName, taskDescription, taskIndex, dataAttr }) => {
     const [showAddTimer, setShowAddTimer] = useState(false);
     const handleCloseTimer = () => setShowAddTimer(false);
     const handleShowAddTimer = () => setShowAddTimer(true);
@@ -29,10 +29,9 @@ const Task = ({ taskName, taskDescription, dataAttr }) => {
       const [showEditModal,setShowEditModal] = useState(false)
       const handleShowEditModal = ()=> setShowEditModal(true)
       const handleCloseEditModal = ()=> setShowEditModal(false)
-  
     return (
         <div className='text-break text-wrap'>  
-            <div className="text-center fs-4 m-2">
+            <div className="text-center fs-4 m-2 p-2">
                 {taskName}
             </div>
             <div className="fs-5 text-start w-100">
@@ -46,7 +45,7 @@ const Task = ({ taskName, taskDescription, dataAttr }) => {
                     defaulTextStyles='#c6a2d0'
                     textHoverStyle='#000000'
                     additionalStyles={{
-                        borderRadius: '100px',
+                        borderRadius: '10px',
                         border: '1px solid #c6a2d0',
                         marginRight:'5px'
                     }}
@@ -59,16 +58,16 @@ const Task = ({ taskName, taskDescription, dataAttr }) => {
                     defaulTextStyles='#c6a2d0'
                     textHoverStyle='#000000'
                     additionalStyles={{
-                        borderRadius: '100px',
+                        borderRadius: '10px',
                         border: '1px solid #c6a2d0'
                     }}
                     onClick={handleShowEditModal}>
-                    Edit
+                    <i className="bi bi-pencil-square"></i>
                 </HoverButton>
                 </div>
             </div>
             <AddTimerModal show={showAddTimer} handleClose={handleCloseTimer} setTimer={setTimer} />
-            <EditTaskModal show={showEditModal} handleClose={handleCloseEditModal} dataAttr={dataAttr}/>
+            <EditTaskModal show={showEditModal} handleClose={handleCloseEditModal} dataAttr={dataAttr} taskIndex={taskIndex}/>
         </div>
     )
 }

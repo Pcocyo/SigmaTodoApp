@@ -54,7 +54,7 @@ const Week = ({ weekToDisplay, weekInMonth, currentMonth }) => {
                                                         borderRadius: '14px'
                                                     }}
                                                     key={index}>
-                                                <Task taskDescription={ele.taskDescription} taskName={ele.taskName} dataAttr={{dataIndex:(weekInMonth * 7) + Dindex + 1,currentMonth:currentMonth.month}}/>
+                                                <Task taskDescription={ele.taskDescription} taskName={ele.taskName} taskIndex= {index} dataAttr={{dataIndex:(weekInMonth * 7) + Dindex + 1,currentMonth:currentMonth.month}}/>
                                                 </div>
                                             )
                                         })}

@@ -13,7 +13,6 @@ const AddTaskModal = ({ show, handleClose,daysInMonth,currentMonth }) => {
     const dispatch = useDispatch()
     function handleSubmit(e) {
         e.preventDefault()
-        console.log('button submit')
         const dataToInsert = {taskName:taskName,taskDescription:taskDescription}
         dispatch(addTask({data:dataToInsert,month:currentMonth,index:daysInMonth}))
         setTaskName('')

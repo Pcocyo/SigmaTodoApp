@@ -4,23 +4,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import HoverButton from './HoverButton'
 import { editTask, deleteTask } from '../reducer/userReducer'
 import { useState } from 'react'
-const EditTaskModal = ({ handleClose, show, dataAttr }) => {
-    const userData = useSelector(state => state.user)
+const EditTaskModal = ({ handleClose, show, dataAttr, taskIndex}) => {
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
-    console.log(dataAttr)
     const dispatch = useDispatch()
     //delete and edit button 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(editTask({ dataAttr, newTask: { taskName, taskDescription } }))
+        dispatch(editTask({ dataAttr, taskIndex, newTask: { taskName, taskDescription } }))
         setTaskName('')
         setTaskDescription('')
         handleClose()
     }
     const handleDelete = (e) => {
         e.preventDefault()
-        dispatch(deleteTask({ dataAttr }))
+        dispatch(deleteTask({ dataAttr, taskIndex}))
         setTaskName('')
         setTaskDescription('')
         handleClose()

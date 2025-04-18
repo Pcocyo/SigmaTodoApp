@@ -1,4 +1,5 @@
-import React,{useState,useRef,usseEffect, useEffect} from 'react'
+import React,{useState, useEffect} from 'react'
+import { useLocation } from 'react-router-dom'
 // stylng and component imports
 import { Form,Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
@@ -7,19 +8,28 @@ import { predefinedCalendar } from '../calender'
 
 // redux imports
 import { useSelector,useDispatch } from 'react-redux'
-import { initializeData } from '../reducer/userReducer'
+import { initializeData, clearData} from '../reducer/userReducer'
 
-const LoginPage = ({setUser,setUserLogin}) => {
+const LoginPage = ({setUserLogin}) => {
     const [login,setLogin] = useState(true)
     const [alert,setAlert] = useState('')
     const [username,setUsername] = useState('')
     const [password,setpassword] = useState('')
     const navigate = useNavigate()
-
     //store initialization
-    const userStore = useSelector((state)=>state.user)
-    const dispatch = useDispatch()
-    //handling login and logout logic
+        const dispatch = useDispatch()
+    // 
+    const location = useLocation()
+    useEffect(()=>{
+        if(location.pathname === '/'){
+            setUsername('')
+            setpassword('')
+            setUserLogin(false)
+            dispatch(clearData())
+        }
+    },[location.pathname])
+
+    //handling data on localStorage
     useEffect(()=>{
         if(!localStorage.getItem('registeredUser')){
             localStorage.setItem('registeredUser',`[]`)

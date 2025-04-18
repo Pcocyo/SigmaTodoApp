@@ -18,12 +18,8 @@ const Navigation = ({ setUserLogin, userLogin }) => {
   const [show, setShow] = useState(false);
   const buttonRef = useRef(null);
 
-
-  //redux logic
-  const dispatch = useDispatch()
+  //logout logic
   function handleLogout() {
-    dispatch(clearData())
-    setUserLogin(false)
     navigate('/')
   }
 

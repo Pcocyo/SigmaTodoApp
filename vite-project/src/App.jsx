@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect} from 'react'
 import { predefinedCalendar } from './calender'
-import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate,useLocation } from 'react-router-dom'
 import { Row, Col, Container, Button } from 'react-bootstrap'
 import Navigation from './component/Navigation'
 import YearView from './component/YearView'
 import WeekView from './component/WeekView'
 import LoginPage from './component/LoginPage'
+
 const App = () => {
   const [userLogin, setUserLogin] = useState(false)
-  const [user, setUser] = useState({ username: '', password: '', data: '' })
   return (
     <BrowserRouter>
       <Container
@@ -22,17 +22,17 @@ const App = () => {
               maxWidth: '50px',
               backgroundColor: '#151515',
             }}
-            className="min-vh-100 m-0 p-0 d-flex flex-column align-items-center border border-danger"
-            xs={2} md={3} lg={2}>
+            className="min-vh-100 m-0 p-0 d-flex flex-column align-items-center"
+            xs={2} md={3} lg={1}>
               <Navigation setUserLogin={setUserLogin} userLogin={userLogin} />
             </Col>
             <Col
-              className="m-0 p-0 " style={{padding:'0', margin:'0' }}
-              xs={10} md={9} lg={10}
+              className="m-0 p-0 border border-warning" style={{padding:'0', margin:'0' }}
+              xs={10} md={9} lg={11}
             >
               <Routes>
                 <>
-                  <Route path="/" element={<LoginPage setUser={setUser} setUserLogin={setUserLogin} />} />
+                  <Route path="/" element={<LoginPage setUserLogin={setUserLogin} />} />
                   <Route path="/year" element={userLogin ? <YearView /> : <Navigate to='/' />} />
                   <Route path="/week" element={userLogin ? <WeekView /> : <Navigate to='/' />} />
                 </>

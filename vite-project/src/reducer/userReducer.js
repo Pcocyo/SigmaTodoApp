@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-import EditTaskModal from "../component/EditTaskModal";
+import { createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     user:'',
@@ -29,12 +28,12 @@ const userSlice = createSlice({
         editTask:(state,action)=>{
             const dataAttr = action.payload.dataAttr
             const newTask = {...action.payload.newTask}
-            state.data[dataAttr.currentMonth][dataAttr.dataIndex - 1] = [newTask]
-            console.log(state.data)
+            console.log(action.payload)
+            state.data[dataAttr.currentMonth][dataAttr.dataIndex - 1][action.payload.taskIndex] = newTask
         },
         deleteTask:(state,action)=>{
             const dataAttr = action.payload.dataAttr
-            state.data[dataAttr.currentMonth][dataAttr.dataIndex - 1] = []
+            state.data[dataAttr.currentMonth][dataAttr.dataIndex - 1].splice(action.payload.taskIndex,1)
         }
     }
 })
