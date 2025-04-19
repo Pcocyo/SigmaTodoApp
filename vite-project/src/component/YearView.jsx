@@ -41,7 +41,7 @@ const YearView = () => {
                             style={{ 
                                 cursor: 'pointer',
                                 color: '#030303',
-                                backgroundColor:`${calenderHover[index]?'transparent':index%2==0?"#c8a1d6":"#cfdedb"}`,
+                                backgroundColor:`${calenderHover[index]?'#f9f9f9':index%2==0?"#c8a1d6":"#cfdedb"}`,
                                 border:`3px  solid  ${index%2==0?"#c8a1d6":"#cfdedb"}`,
                                 borderRadius:'10px'
                             }} 

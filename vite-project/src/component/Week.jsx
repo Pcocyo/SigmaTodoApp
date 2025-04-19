@@ -30,10 +30,10 @@ const Week = ({ weekToDisplay, weekInMonth, currentMonth, dayToDisplay}) => {
                         return (
                             <Col key={Dindex} className='p-1 m-0'
                             >
-                                <div className='fs-1' style={{ color: '#9a9a9a' }}>{(weekInMonth * dayToDisplay) + Dindex + 1}</div>
+                                <h1 className='' style={{ color: '#c6a2d0' }}>{(weekInMonth * dayToDisplay) + Dindex + 1}</h1>
                                 <div className="d-flex flex-column justify-content-center align-items-center gap-2 p-2"
                                     style={{
-                                        borderColor: '#222222',
+                                        borderColor: '#f9f9f9',
                                         borderRight: '2px solid',
                                         borderBottom: '2px solid',
                                         borderRadius: '14px',

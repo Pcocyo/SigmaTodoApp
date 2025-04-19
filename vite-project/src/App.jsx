@@ -24,20 +24,21 @@ const App = () => {
       <Container
         fluid
         className="w-100"
-        style={{ padding: '0', margin:'0', width: '100%', overflowX: 'hidden', maxHeight: "100vh", backgroundColor: '#F9F9F9' }}
+        style={{ padding: '0', margin:'0', width: '100%', overflowX: 'hidden', maxHeight: "100vh", backgroundColor: '#151515' }}
       >
         <Row className="w-100 " style={{ height: '100vh', padding:'0', margin:'0' }}>
           <Col
             style={{
               maxWidth: '50px',
               backgroundColor: '#151515',
+              borderRight:'1px solid #f9f9f9'
             }}
             className="min-vh-100 m-0 p-0 d-flex flex-column flex-wrap align-items-center"
             xs={2} md={3} lg={1}> 
               <Navigation setUserLogin={setUserLogin} userLogin={userLogin} />
             </Col>
             <Col
-              className="m-0 p-0 border border-warning" style={{padding:'0', margin:'0' }}
+              className="m-0 p-0" style={{padding:'0', margin:'0' }}
               xs={10} md={9} lg={11}
             >
               <Routes>

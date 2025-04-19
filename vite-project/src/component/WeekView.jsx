@@ -65,11 +65,11 @@ const WeekView = ({isMobile}) => {
     };
     return (
         <>
-            <div className="d-flex flex-wrap justify-content-center gap-1 align-items-center mt-2 border border-danger w-100">
+            <div className="d-flex flex-wrap justify-content-center gap-2 align-items-center mt-2 w-100">
                 <HoverButton 
                 hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
-                defaulTextStyles='#000000'
+                defaulTextStyles='#f9f9f9'
                 additionalStyles={{borderRadius:'100px'}}
                 onClick={handlePrevMonth}>
                         <i className="bi bi-caret-left-square fs-3"></i>
@@ -77,16 +77,16 @@ const WeekView = ({isMobile}) => {
                 <HoverButton 
                 hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
-                defaulTextStyles='#000000'
+                defaulTextStyles='#f9f9f9'
                 additionalStyles={{borderRadius:'100px'}}
                 onClick={handlePrev}>
                         <i className="bi bi-arrow-left-circle fs-3"></i>
                 </HoverButton>
-                <h6 className=''>{currentMonth.month}</h6>
+                <h6 style={{color:'#f9f9f9'}}>{currentMonth.month}</h6>
                 <HoverButton 
                 hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
-                defaulTextStyles='#000000'
+                defaulTextStyles='#f9f9f9'
                 additionalStyles={{borderRadius:'100px'}}
                 onClick={handleNext}>
                         <i className="bi bi-arrow-right-circle fs-3"></i>
@@ -95,15 +95,15 @@ const WeekView = ({isMobile}) => {
                 <HoverButton 
                 hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
-                defaulTextStyles='#000000'
+                defaulTextStyles='#f9f9f9'
                 additionalStyles={{borderRadius:'100px'}}
                 onClick={handleNextMonth}>
                         <i className="bi bi-caret-right-square fs-3"></i>
                 </HoverButton>
                 <HoverButton 
-                hoverStyles='#000000' 
+                hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
-                defaulTextStyles='#000000'
+                defaulTextStyles='#f9f9f9'
                 additionalStyles={{borderRadius:'100px',border:'1px solid #c39edb'}}
                 onClick={()=>{navigate('/year')}}>
                         <i className="bi bi-calendar-date fs-3"></i>
