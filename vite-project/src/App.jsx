@@ -9,6 +9,16 @@ import LoginPage from './component/LoginPage'
 
 const App = () => {
   const [userLogin, setUserLogin] = useState(false)
+
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(()=>{
+    function checkView(){
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkView();
+    window.addEventListener('resize',checkView)
+    return ()=> window.removeEventListener('resize',checkView)
+  },[])
   return (
     <BrowserRouter>
       <Container
@@ -22,8 +32,8 @@ const App = () => {
               maxWidth: '50px',
               backgroundColor: '#151515',
             }}
-            className="min-vh-100 m-0 p-0 d-flex flex-column align-items-center"
-            xs={2} md={3} lg={1}>
+            className="min-vh-100 m-0 p-0 d-flex flex-column flex-wrap align-items-center"
+            xs={2} md={3} lg={1}> 
               <Navigation setUserLogin={setUserLogin} userLogin={userLogin} />
             </Col>
             <Col
@@ -34,7 +44,7 @@ const App = () => {
                 <>
                   <Route path="/" element={<LoginPage setUserLogin={setUserLogin} />} />
                   <Route path="/year" element={userLogin ? <YearView /> : <Navigate to='/' />} />
-                  <Route path="/week" element={userLogin ? <WeekView /> : <Navigate to='/' />} />
+                  <Route path="/week" element={userLogin ? <WeekView isMobile={isMobile}/> : <Navigate to='/' />} />
                 </>
               </Routes>
             </Col>

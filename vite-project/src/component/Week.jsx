@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import HoverButton from './HoverButton'
 import AddTaskModal from './AddTaskModal'
 import Task from './Task'
-const Week = ({ weekToDisplay, weekInMonth, currentMonth }) => {
+const Week = ({ weekToDisplay, weekInMonth, currentMonth, dayToDisplay}) => {
     // modal control
     const [showAddTask, setShowAddTask] = useState(false);
 
@@ -30,7 +30,7 @@ const Week = ({ weekToDisplay, weekInMonth, currentMonth }) => {
                         return (
                             <Col key={Dindex} className='p-1 m-0'
                             >
-                                <div className='fs-1' style={{ color: '#9a9a9a' }}>{(weekInMonth * 7) + Dindex + 1}</div>
+                                <div className='fs-1' style={{ color: '#9a9a9a' }}>{(weekInMonth * dayToDisplay) + Dindex + 1}</div>
                                 <div className="d-flex flex-column justify-content-center align-items-center gap-2 p-2"
                                     style={{
                                         borderColor: '#222222',

@@ -6,7 +6,7 @@ import HoverButton from './HoverButton';
 import Week from './Week';
 //redux imports
 import { useDispatch, useSelector } from 'react-redux';
-const WeekView = () => {
+const WeekView = ({isMobile}) => {
 
     const location = useLocation()
     const [currentMonth,setCurrentMonth] = useState({...location.state})
@@ -16,11 +16,12 @@ const WeekView = () => {
     const user = useSelector((state)=> state.user)
     // weekGenerate
     const monthDuplicated = [...user.data[currentMonth.month]]
+    const dayToDisplay = isMobile? 3:7
     
     function changeToWeeks(monthArray) {
         const weeks = []
-        for (let i = 0; i < monthArray.length; i += 7) {
-            weeks.push(monthArray.slice(i, i + 7))
+        for (let i = 0; i < monthArray.length; i += dayToDisplay) {
+            weeks.push(monthArray.slice(i, i + dayToDisplay))
         }
         return weeks
     }
@@ -64,7 +65,7 @@ const WeekView = () => {
     };
     return (
         <>
-            <div className="d-flex justify-content-center gap-3 align-items-center mt-2">
+            <div className="d-flex flex-wrap justify-content-center gap-1 align-items-center mt-2 border border-danger w-100">
                 <HoverButton 
                 hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
@@ -81,7 +82,7 @@ const WeekView = () => {
                 onClick={handlePrev}>
                         <i className="bi bi-arrow-left-circle fs-3"></i>
                 </HoverButton>
-                <div className='fs-4'>{currentMonth.month}</div>
+                <h6 className=''>{currentMonth.month}</h6>
                 <HoverButton 
                 hoverStyles='#c6a2d0' 
                 defaultStyles='transparent' 
@@ -116,7 +117,7 @@ const WeekView = () => {
                     const currentWeek = index;
                     return (
                         <Carousel.Item key={index}>
-                            <Week weekToDisplay={ele} weekInMonth={currentWeek}currentMonth={currentMonth}/>
+                            <Week weekToDisplay={ele} weekInMonth={currentWeek}currentMonth={currentMonth} dayToDisplay={dayToDisplay}/>
                         </Carousel.Item>
                     )
                 })}
